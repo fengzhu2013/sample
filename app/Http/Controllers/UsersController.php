@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Models\User;
+use Auth;
 
 class UsersController extends Controller
 {
@@ -47,6 +48,7 @@ class UsersController extends Controller
             //提示错误信息
         }
 
+        Auth::login($user);
         session()->flash('success','欢迎，您将在这里开启一段新的旅程~');
         //重定向
         return redirect()->route('users.show',[$user]);
